@@ -9,7 +9,6 @@ function App() {
         <h1 className='text-3xl py-8 mb-10 bg-slate-800 text-white rounded'>Expense Tracker</h1>
       
       <div className="grid md:grid-cols-2 gap-4" >
-        <graph></graph>
 
 
 

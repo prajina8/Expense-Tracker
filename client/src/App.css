@@ -3,27 +3,224 @@
 @tailwind utilities;
 
 
-
-:root{
---color-black: #000000;
---color-white: #ffffff;
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-*>*{
-  font-family: 'Manrope', sans-serif;
-  margin: 0;
-  padding: 0;  
-}
-.App {
+.app-header {
   text-align: center;
-  padding: 4em 0;
+  margin-bottom: 24px;
 }
 
-.bg-white{
-  background-color: var(--color-white);
+.app-header h1 {
+  margin-bottom: 4px;
+  color: #2c3e50;
 }
-.bg-black{
-  background-color: var(--color-black);
+
+.app-header p {
+  color: #666;
+  margin: 0;
+}
+
+.app-main {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- cards --- */
+.expense-form,
+.expense-list,
+.chart-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.expense-form h2,
+.expense-list h2,
+.chart-card h2 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+/* --- form --- */
+.form-row {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #444;
+}
+
+.form-row input,
+.form-row select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.expense-form button {
+  width: 100%;
+  padding: 10px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.expense-form button:hover {
+  background: #3a7bc8;
+}
+
+.form-error {
+  color: #e94e4e;
+  font-size: 13px;
+}
+
+/* --- expense list --- */
+.expense-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expense-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.expense-list li:last-child {
+  border-bottom: none;
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  font-size: 11px;
+  background: #eef3fb;
+  color: #4a90e2;
+  border-radius: 4px;
+}
+
+.expense-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.expense-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.expense-right button {
+  background: none;
+  border: 1px solid #e94e4e;
+  color: #e94e4e;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.expense-right button:hover {
+  background: #e94e4e;
+  color: white;
+}
+
+/* --- charts --- */
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-card-header button {
+  padding: 6px 12px;
+  border: 1px solid #4a90e2;
+  background: white;
+  color: #4a90e2;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.chart-card-header button:hover {
+  background: #4a90e2;
+  color: white;
+}
+
+.highlight-text {
+  color: #444;
+  font-size: 14px;
+}
+
+.chart-tooltip {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.chart-tooltip .hint {
+  color: #999;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.week-change-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.week-change-list li {
+  padding: 4px 0;
+}
+
+.change-up {
+  color: #e94e4e;
+  margin-left: 6px;
+}
+
+.change-down {
+  color: #2ecc71;
+  margin-left: 6px;
 }
 
 
