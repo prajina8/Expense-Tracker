@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Expense = require("../models/Expense");
 
-// GET /api/expenses -> list all expenses, newest first
+
 router.get("/", async (req, res) => {
   try {
     const expenses = await Expense.find().sort({ date: -1 });
@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// DELETE /api/expenses/:id -> remove one expense
+
 router.delete("/:id", async (req, res) => {
   try {
     const deleted = await Expense.findByIdAndDelete(req.params.id);

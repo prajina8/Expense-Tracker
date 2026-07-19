@@ -11,7 +11,7 @@ function randomAmount(min, max) {
 }
 
 function randomDateInMonth(year, monthIndex) {
-  const day = Math.floor(Math.random() * 28) + 1; // keep it safe for all months
+  const day = Math.floor(Math.random() * 28) + 1; 
   return new Date(year, monthIndex, day);
 }
 
@@ -23,13 +23,13 @@ async function seed() {
   const now = new Date();
   const sample = [];
 
-  // create sample expenses for the last 4 months
+ 
   for (let back = 3; back >= 0; back--) {
     const d = new Date(now.getFullYear(), now.getMonth() - back, 1);
     const year = d.getFullYear();
     const monthIndex = d.getMonth();
 
-    // 15-25 random expenses per month
+  
     const count = Math.floor(Math.random() * 10) + 15;
     for (let i = 0; i < count; i++) {
       const category = categories[Math.floor(Math.random() * categories.length)];

@@ -15,7 +15,7 @@ app.use("/api/expenses", expenseRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Budget Management API is running");
+  res.send("Expense Tracker API is running");
 });
 
 const PORT = process.env.PORT || 5000;
