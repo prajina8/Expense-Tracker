@@ -1,34 +1,52 @@
-const mongoose = require("mongoose");
+const express = require("express");
+const router = express.Router();
+const Expense = require("../models/Expense");
 
+// GET /api/expenses -> list all expenses, newest first
+router.get("/", async (req, res) => {
+  try {
+    const expenses = await Expense.find().sort({ date: -1 });
+    res.json(expenses);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
-const expenseSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    amount: {
-      type: Number,
-      required: true,
-      min: 0,
-    },
-    category: {
-      type: String,
-      required: true,
-      default: "Other",
-    },
-    note: {
-      type: String,
-      default: "",
-    },
-    date: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
-  },
-  { timestamps: true }
-);
+// POST /api/expenses -> add a new expense
+router.post("/", async (req, res) => {
+  try {
+    const { title, amount, category, note, date } = req.body;
 
-module.exports = mongoose.model("Expense", expenseSchema);
+    if (!title || amount === undefined) {
+      return res.status(400).json({ message: "title and amount are required" });
+    }
+
+    const expense = new Expense({
+      title,
+      amount,
+      category: category || "Other",
+      note,
+      date: date ? new Date(date) : new Date(),
+    });
+
+    const saved = await expense.save();
+    res.status(201).json(saved);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+// DELETE /api/expenses/:id -> remove one expense
+router.delete("/:id", async (req, res) => {
+  try {
+    const deleted = await Expense.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Expense not found" });
+    }
+    res.json({ message: "Expense deleted", id: req.params.id });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+module.exports = router;
