@@ -11,10 +11,10 @@ import {
   LabelList,
 } from "recharts";
 
-const NORMAL_COLOR = "#4a90e2";
+const NORMAL_COLOR = "#29394b";
 const HIGHEST_COLOR = "#e94e4e";
 
-// custom tooltip so we can show the % change alongside the total
+
 function CustomTooltip({ active, payload }) {
   if (!active || !payload || !payload.length) return null;
   const data = payload[0].payload;

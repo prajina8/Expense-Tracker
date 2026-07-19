@@ -9,7 +9,7 @@ import { getExpenses, getMonthlyAnalytics, getWeeklyAnalytics } from "./api";
 function App() {
   const [expenses, setExpenses] = useState([]);
   const [monthlyData, setMonthlyData] = useState({ months: [], highestMonth: null });
-  const [weeklyData, setWeeklyData] = useState(null); // null = not viewing a specific month
+  const [weeklyData, setWeeklyData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const loadExpenses = useCallback(async () => {
