@@ -1,59 +1,91 @@
-import React from 'react'
-import{Bar} from 'react-chartjs-2';
-import{Chart,ArcElement}from 'chart.js';
+import React, { useState } from "react";
+import { addExpense } from "../api";
 
-Chart.register(ArcElement);
+const CATEGORIES = ["Food", "Transport", "Rent", "Shopping", "Bills", "Entertainment", "Other"];
 
-const labels = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'My First Dataset',
-    data: [65, 59, 80, 81, 56, 55, 40],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(201, 203, 207, 0.2)'
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(201, 203, 207)'
-    ],
-    borderWidth: 1
-  }]
-};
+function ExpenseForm({ onExpenseAdded }) {
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState(CATEGORIES[0]);
+  const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
+  const [error, setError] = useState("");
 
-export default function Graph() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (!title.trim() || !amount) {
+      setError("Please fill in a title and amount.");
+      return;
+    }
+
+    try {
+      await addExpense({
+        title: title.trim(),
+        amount: Number(amount),
+        category,
+        date,
+      });
+
+      // reset the form
+      setTitle("");
+      setAmount("");
+      setCategory(CATEGORIES[0]);
+      setDate(new Date().toISOString().slice(0, 10));
+
+      onExpenseAdded();
+    } catch (err) {
+      setError("Could not add expense. Is the backend running?");
+    }
+  };
+
   return (
-    <div className="flex justify-content max-w-xs mx-auto">
-        <div className="item">
-            <div className="chart-relative">
-           <Bar data={data}></Bar>
-           
-            </div>
-            <div className="flex flex-col py-10 gap-4">
+    <form className="expense-form" onSubmit={handleSubmit}>
+      <h2>Add Expense</h2>
 
+      <div className="form-row">
+        <label>Title</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="e.g. Groceries"
+        />
+      </div>
 
+      <div className="form-row">
+        <label>Amount</label>
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="e.g. 25.50"
+        />
+      </div>
 
-            </div>
-        </div>
-    </div>
-  )
+      <div className="form-row">
+        <label>Category</label>
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          {CATEGORIES.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="form-row">
+        <label>Date</label>
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+      </div>
+
+      {error && <p className="form-error">{error}</p>}
+
+      <button type="submit">Add Expense</button>
+    </form>
+  );
 }
+
+export default ExpenseForm;
