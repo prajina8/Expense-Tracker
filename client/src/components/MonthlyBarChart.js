@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 const NORMAL_COLOR = "#29394b";
-const HIGHEST_COLOR = "#e94e4e";
+const HIGHEST_COLOR = "#760808";
 
 
 function CustomTooltip({ active, payload }) {

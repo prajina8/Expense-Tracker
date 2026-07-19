@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-const COLORS = ["#182b41", "#50c878", "#f5a623", "#9b59b6", "#e94e4e"];
+const COLORS = ["#182b41", "#453a05", "#37260a", "#23092e", "#3d0202"];
 
 function CustomTooltip({ active, payload }) {
   if (!active || !payload || !payload.length) return null;
