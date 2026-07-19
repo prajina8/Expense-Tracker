@@ -19,7 +19,7 @@ function CustomTooltip({ active, payload }) {
       <p>
         <strong>{data.label}</strong>
       </p>
-      <p>Total: ${data.total.toFixed(2)}</p>
+      <p>Total: Rs.{data.total.toFixed(2)}</p>
       <p>{changeText}</p>
     </div>
   );
@@ -58,7 +58,7 @@ function WeeklyPieChart({ weekly, onClose }) {
                 cx="50%"
                 cy="50%"
                 outerRadius={110}
-                label={(entry) => `${entry.label}: $${entry.total.toFixed(2)}`}
+                label={(entry) => `${entry.label}: Rs.${entry.total.toFixed(2)}`}
               >
                 {weeks.map((w, index) => (
                   <Cell key={w.week} fill={COLORS[index % COLORS.length]} />
@@ -72,7 +72,7 @@ function WeeklyPieChart({ weekly, onClose }) {
           <ul className="week-change-list">
             {weeks.map((w) => (
               <li key={w.week}>
-                <strong>{w.label}:</strong> ${w.total.toFixed(2)}{" "}
+                <strong>{w.label}:</strong> Rs.{w.total.toFixed(2)}{" "}
                 {w.percentChange > 0 && (
                   <span className="change-up">▲ {w.percentChange}%</span>
                 )}
