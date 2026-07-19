@@ -23,7 +23,7 @@ function ExpenseList({ expenses, onExpenseDeleted }) {
               </div>
             </div>
             <div className="expense-right">
-              <span className="amount">${exp.amount.toFixed(2)}</span>
+              <span className="amount">Rs.{exp.amount.toFixed(2)}</span>
               <button onClick={() => handleDelete(exp._id)}>Delete</button>
             </div>
           </li>

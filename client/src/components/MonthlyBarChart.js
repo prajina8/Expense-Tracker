@@ -31,7 +31,7 @@ function CustomTooltip({ active, payload }) {
       <p>
         <strong>{data.label}</strong>
       </p>
-      <p>Total: ${data.total.toFixed(2)}</p>
+      <p>Total: Rs.{data.total.toFixed(2)}</p>
       <p>{changeText}</p>
       <p className="hint">Click bar to see weekly breakdown</p>
     </div>
