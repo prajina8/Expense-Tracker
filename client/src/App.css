@@ -24,6 +24,155 @@
   margin: 0;
 }
 
+.app-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+ 
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #444;
+}
+ 
+.user-box button {
+  padding: 6px 12px;
+  border: 1px solid #4a90e2;
+  background: white;
+  color: #4a90e2;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+ 
+.user-box button:hover {
+  background: #4a90e2;
+  color: white;
+}
+ 
+
+.centered-message {
+  text-align: center;
+  margin-top: 60px;
+  color: #666;
+}
+ 
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+ 
+.auth-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 28px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+ 
+.auth-card h2 {
+  margin-top: 0;
+  color: #2c3e50;
+  text-align: center;
+}
+ 
+.auth-card button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+ 
+.auth-card button[type="submit"]:hover {
+  background: #3a7bc8;
+}
+ 
+.auth-card button[type="submit"]:disabled {
+  background: #a9c6ea;
+  cursor: not-allowed;
+}
+ 
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+ 
+.link-button {
+  background: none;
+  border: none;
+  color: #4a90e2;
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+  text-decoration: underline;
+}
+ 
+.field-error {
+  color: #e94e4e;
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+ 
+.form-row-inline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+ 
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #444;
+  cursor: pointer;
+}
+ 
+.checkbox-label input {
+  width: auto;
+}
+ 
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  margin: 18px 0;
+}
+ 
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+ 
+.auth-divider span {
+  padding: 0 10px;
+}
+ 
+.google-login-wrapper {
+  display: flex;
+  justify-content: center;
+}
 .app-main {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -43,7 +192,7 @@
   gap: 20px;
 }
 
-/* --- cards --- */
+
 .expense-form,
 .expense-list,
 .chart-card {
@@ -61,7 +210,7 @@
   color: #2c3e50;
 }
 
-/* --- form --- */
+
 .form-row {
   margin-bottom: 12px;
   display: flex;
@@ -102,7 +251,7 @@
   font-size: 13px;
 }
 
-/* --- expense list --- */
+
 .expense-list ul {
   list-style: none;
   padding: 0;
@@ -161,7 +310,7 @@
   color: white;
 }
 
-/* --- charts --- */
+
 .chart-card-header {
   display: flex;
   justify-content: space-between;
