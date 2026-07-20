@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      // not required for accounts created through Google sign-in
+   
       required: function () {
         return !this.googleId;
       },
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// hash the password automatically before saving, but only if it changed
+
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password") || !this.password) return next();
   const salt = await bcrypt.genSalt(10);
@@ -38,7 +38,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// helper to check a plain-text password against the stored hash
+
 userSchema.methods.comparePassword = function (candidatePassword) {
   if (!this.password) return Promise.resolve(false); // Google-only account
   return bcrypt.compare(candidatePassword, this.password);

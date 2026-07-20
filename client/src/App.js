@@ -45,7 +45,7 @@ function Dashboard() {
 
   const handleExpenseChange = () => {
     loadAll();
-    // if we're currently looking at a month's weekly view, refresh it too
+
     if (weeklyData) {
       const monthIndex = monthlyData.months.find((m) => m.month === weeklyData.month)?.monthIndex;
       if (monthIndex !== undefined) {
@@ -59,7 +59,7 @@ function Dashboard() {
       <header className="app-header">
         <div className="app-header-top">
           <div>
-            <h1>Budget Management System</h1>
+            <h1>Expense Tracker</h1>
             <p>Track your spending, month by month and week by week.</p>
           </div>
           <div className="user-box">

@@ -42,16 +42,16 @@
  
 .user-box button {
   padding: 6px 12px;
-  border: 1px solid #4a90e2;
+  border: 1px solid #08111b;
   background: white;
-  color: #4a90e2;
+  color: #040b14;
   border-radius: 4px;
   cursor: pointer;
   font-size: 13px;
 }
  
 .user-box button:hover {
-  background: #4a90e2;
+  background: #040a11;
   color: white;
 }
  
@@ -88,7 +88,7 @@
 .auth-card button[type="submit"] {
   width: 100%;
   padding: 10px;
-  background: #4a90e2;
+  background: #0c151f;
   color: white;
   border: none;
   border-radius: 4px;
@@ -98,7 +98,7 @@
 }
  
 .auth-card button[type="submit"]:hover {
-  background: #3a7bc8;
+  background: #010811;
 }
  
 .auth-card button[type="submit"]:disabled {
@@ -117,7 +117,7 @@
 .link-button {
   background: none;
   border: none;
-  color: #4a90e2;
+  color: #010c19;
   cursor: pointer;
   padding: 0;
   font-size: 13px;

@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST /api/expenses -> add a new expense
+
 router.post("/", async (req, res) => {
   try {
     const { title, amount, category, note, date } = req.body;
