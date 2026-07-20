@@ -4,12 +4,16 @@ import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 import MonthlyBarChart from "./components/MonthlyBarChart";
 import WeeklyPieChart from "./components/WeeklyPieChart";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { useAuth } from "./context/AuthContext";
 import { getExpenses, getMonthlyAnalytics, getWeeklyAnalytics } from "./api";
 
-function App() {
+function Dashboard() {
+  const { user, logout } = useAuth();
   const [expenses, setExpenses] = useState([]);
   const [monthlyData, setMonthlyData] = useState({ months: [], highestMonth: null });
-  const [weeklyData, setWeeklyData] = useState(null);
+  const [weeklyData, setWeeklyData] = useState(null); // null = not viewing a specific month
   const [loading, setLoading] = useState(true);
 
   const loadExpenses = useCallback(async () => {
@@ -41,7 +45,7 @@ function App() {
 
   const handleExpenseChange = () => {
     loadAll();
-
+    // if we're currently looking at a month's weekly view, refresh it too
     if (weeklyData) {
       const monthIndex = monthlyData.months.find((m) => m.month === weeklyData.month)?.monthIndex;
       if (monthIndex !== undefined) {
@@ -53,8 +57,16 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Expense Tracker</h1>
-        <p>Track your spending, month by month and week by week.</p>
+        <div className="app-header-top">
+          <div>
+            <h1>Budget Management System</h1>
+            <p>Track your spending, month by month and week by week.</p>
+          </div>
+          <div className="user-box">
+            <span>Hi, {user?.name}</span>
+            <button onClick={logout}>Log Out</button>
+          </div>
+        </div>
       </header>
 
       <main className="app-main">
@@ -79,6 +91,29 @@ function App() {
       </main>
     </div>
   );
+}
+
+function App() {
+  const { token, checkingSession } = useAuth();
+  const [authMode, setAuthMode] = useState("login"); // "login" | "register"
+
+  if (checkingSession) {
+    return <p className="centered-message">Loading...</p>;
+  }
+
+  if (!token) {
+    return (
+      <div className="auth-page">
+        {authMode === "login" ? (
+          <Login onSwitchToRegister={() => setAuthMode("register")} />
+        ) : (
+          <Register onSwitchToLogin={() => setAuthMode("login")} />
+        )}
+      </div>
+    );
+  }
+
+  return <Dashboard />;
 }
 
 export default App;
