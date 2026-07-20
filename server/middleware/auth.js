@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 
-// Expects a header: Authorization: Bearer <token>
 function requireAuth(req, res, next) {
   const authHeader = req.headers.authorization;
 

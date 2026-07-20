@@ -11,7 +11,16 @@ import {
   LabelList,
 } from "recharts";
 
-const NORMAL_COLOR = "#29394b";
+
+const BAR_COLORS = [
+  "#29394b", 
+  "#49467e",
+  "#0c413d",
+  "#B45309", 
+  "#8a0538", 
+  "#466104",
+];
+
 const HIGHEST_COLOR = "#760808";
 
 
@@ -64,10 +73,10 @@ function MonthlyBarChart({ months, highestMonth, onSelectMonth }) {
               position="top"
               formatter={(val) => (val ? `${val > 0 ? "+" : ""}${val}%` : "")}
             />
-            {months.map((m) => (
+            {months.map((m,index) => (
               <Cell
                 key={m.key}
-                fill={m.label === highestMonth ? HIGHEST_COLOR : NORMAL_COLOR}
+                fill={m.label === highestMonth ? HIGHEST_COLOR : BAR_COLORS[index % BAR_COLORS.length]}
               />
             ))}
           </Bar>
