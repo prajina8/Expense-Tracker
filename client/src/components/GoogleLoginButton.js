@@ -20,7 +20,7 @@ function GoogleLoginButton({ rememberMe, onError }) {
         onSuccess={handleSuccess}
         onError={() => onError("Google sign-in failed.")}
         useOneTap={false}
-        width="100%"
+      
       />
     </div>
   );

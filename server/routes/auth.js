@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 const router = express.Router();
-const User = require("../models/User");
+const User = require("../models/Users");
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -13,7 +13,7 @@ function createToken(userId) {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 }
 
-// POST /api/auth/register
+
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -48,7 +48,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// POST /api/auth/login
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -77,10 +76,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// POST /api/auth/google
-// Frontend sends the Google ID token (the "credential") it received from
-// the Google Sign-In button. We verify it with Google, then find or
-// create a matching user, and hand back our own JWT like any other login.
+
 router.post("/google", async (req, res) => {
   try {
     const { credential } = req.body;
@@ -101,15 +97,14 @@ router.post("/google", async (req, res) => {
       return res.status(400).json({ message: "Google account has no email" });
     }
 
-    // reuse an existing account with this email/googleId, or create one
+  
     let user = await User.findOne({ $or: [{ googleId }, { email: email.toLowerCase() }] });
 
     if (!user) {
       user = new User({ name: name || email, email, googleId });
       await user.save();
     } else if (!user.googleId) {
-      // an account already existed with this email (registered normally) -
-      // link the Google id to it so they can sign in either way next time
+      
       user.googleId = googleId;
       await user.save();
     }
@@ -124,8 +119,6 @@ router.post("/google", async (req, res) => {
   }
 });
 
-// GET /api/auth/me - return the logged-in user, useful for the frontend
-// to check on page load whether a saved token is still valid
 router.get("/me", require("../middleware/auth"), async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
