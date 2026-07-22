@@ -8,7 +8,6 @@ export function saveToken(token, rememberMe) {
     sessionStorage.setItem(TOKEN_KEY, token);
   }
 }
-
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY);
 }

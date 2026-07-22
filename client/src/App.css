@@ -125,7 +125,7 @@
 }
  
 .field-error {
-  color: #e94e4e;
+  color: #8a1212;
   font-size: 12px;
   margin: 4px 0 0;
 }
@@ -247,7 +247,7 @@
 }
 
 .form-error {
-  color: #e94e4e;
+  color: #770d0d;
   font-size: 13px;
 }
 
@@ -368,7 +368,7 @@
 }
 
 .change-down {
-  color: #2ecc71;
+  color: #159149;
   margin-left: 6px;
 }
 
