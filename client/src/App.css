@@ -141,7 +141,7 @@
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #444;
+  color: #685d5f;
   cursor: pointer;
 }
  
@@ -297,7 +297,7 @@
 
 .expense-right button {
   background: none;
-  border: 1px solid #e94e4e;
+  border: 1px solid #140f0f;
   color: #e94e4e;
   border-radius: 4px;
   padding: 4px 8px;
@@ -363,7 +363,7 @@
 }
 
 .change-up {
-  color: #e94e4e;
+  color: #4c3c3c;
   margin-left: 6px;
 }
 
